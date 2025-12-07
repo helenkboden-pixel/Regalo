@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti ❤️</title>
+<style>
+    body {
+        background: #fff5f8;
+        font-family: "Segoe UI", sans-serif;
+        text-align: center;
+        padding: 20px;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 30px;
+        color: #ff2f7d;
+        margin-bottom: 10px;
+    }
+
+    input {
+        font-size: 18px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        border: 2px solid #ff8eb6;
+        outline: none;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: none;
+        background: #ff2f7d;
+        color: white;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    #mensaje {
+        margin-top: 30px;
+        font-size: 20px;
+        color: #d32061;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+    }
+
+    .imagen-container img {
+        width: 80%;
+        max-width: 350px;
+        margin: 10px auto;
+        border-radius: 15px;
+        opacity: 0;
+        transform: scale(0.85);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .imagen-container img.visible {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* corazones flotando */
+    .corazon {
+        position: fixed;
+        font-size: 22px;
+        animation: flotar 6s linear infinite;
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 999;
+    }
+
+    @keyframes flotar {
+        0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Escribe un número del 1 al 19 💗</h1>
+
+<input id="numero" type="number" min="1" max="19" placeholder="Número...">
+<button onclick="mostrar()">Ver</button>
+
+<div id="mensaje"></div>
+<div class="imagen-container" id="imagenes"></div>
+
+<script>
+const mensajes = {
+    1: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Cumpleaños feliz...",
+    2: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Este día está hecho para ti...",
+    3: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Sé que es poco...",
+    4: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Solo quiero que veas...",
+    5: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Desde que te conocí...",
+    6: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Con esta pequeña cosita...",
+    7: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Espero nunca se te olvide...",
+    8: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Te debo un heladito...",
+    9: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Quiero que notes la hermosa sonrisa...",
+    10: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Pronto estaremos juntitos...",
+    11: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ No solo eres el mejor novio...",
+    12: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Voy a tener paciencia...",
+    13: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Otra vez porque sí TE AMOOOO...",
+    14: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ ¿Te has puesto a pensar?",
+    15: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Si esta vida se acaba...",
+    16: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Si pudiera volvería...",
+    17: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ No soy muy buena escribiendo...",
+    18: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ ¿Con esto sí gano hoy?...",
+    19: "🙈🥺😽❤‍🔥🐣✨❤‍🩹♾️ Ahora sí puedes abrir el regalo..."
+};
+
+const imagenes = {
+    1: ["imagen1a.jpg", "imagen1b.jpg"],
+    2: ["imagen2a.jpg", "imagen2b.jpg"],
+    3: ["imagen3a.jpg", "imagen3b.jpg"],
+    4: ["imagen4a.jpg", "imagen4b.jpg"],
+    5: ["imagen5a.jpg", "imagen5b.jpg"],
+    6: ["imagen6a.jpg", "imagen6b.jpg"],
+    7: ["imagen7a.jpg", "imagen7b.jpg"],
+    8: ["imagen8a.jpg", "imagen8b.jpg"],
+    9: ["imagen9a.jpg", "imagen9b.jpg"],
+    10: ["imagen10a.jpg", "imagen10b.jpg"],
+    11: ["imagen11a.jpg", "imagen11b.jpg"],
+    12: ["imagen12a.jpg", "imagen12b.jpg"],
+    13: ["imagen13a.jpg", "imagen13b.jpg"],
+    14: ["imagen14a.jpg", "imagen14b.jpg"],
+    15: ["imagen15a.jpg", "imagen15b.jpg"],
+    16: ["imagen16a.jpg", "imagen16b.jpg"],
+    17: ["imagen17a.jpg", "imagen17b.jpg"],
+    18: ["imagen18a.jpg", "imagen18b.jpg"],
+    19: ["imagen19a.jpg", "imagen19b.jpg"]
+};
+
+function mostrar() {
+    const n = parseInt(document.getElementById("numero").value);
+
+    if (!mensajes[n]) {
+        document.getElementById("mensaje").innerText = "Solo del 1 al 19, no estás tan viejo 😼";
+        document.getElementById("imagenes").innerHTML = "";
+        return;
+    }
+
+    document.getElementById("mensaje").innerText = mensajes[n];
+
+    const cont = document.getElementById("imagenes");
+    cont.innerHTML = "";
+
+    imagenes[n].forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+
+        cont.appendChild(img);
+
+        setTimeout(() => {
+            img.classList.add("visible");
+        }, 50);
+    });
+}
+
+// generar corazones flotando
+setInterval(() => {
+    const c = document.createElement("div");
+    c.className = "corazon";
+    c.innerText = "💗";
+    c.style.left = Math.random() * 90 + "vw";
+    c.style.animationDuration = (4 + Math.random()*4) + "s";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 6000);
+}, 500);
+</script>
+</body>
+</html>
